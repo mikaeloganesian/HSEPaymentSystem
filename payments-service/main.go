@@ -3,12 +3,15 @@ package main
 import (
 	"payments-service/db"
 	"payments-service/handlers"
+	"payments-service/outbox"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	db.InitDB()
+
+	outbox.StartOutboxPublisher(db.DB.DB)
 
 	r := gin.Default()
 	h := handlers.Handler{DB: db.DB}

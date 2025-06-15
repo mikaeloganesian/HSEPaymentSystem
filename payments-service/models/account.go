@@ -12,9 +12,3 @@ type Account struct {
 	Balance   int64     `db:"balance" json:"balance"` // в копейках
 	CreatedAt time.Time `db:"created_at" json:"created_at"`
 }
-
-type OutboxEvent struct {
-	ID        uuid.UUID
-	EventType string
-	Payload   map[string]interface{}
-}
