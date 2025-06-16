@@ -67,7 +67,7 @@
 }
 ```
 
-### GET /accounts/{id}/balance
+### GET /accounts/balance?user_id=
 Получить баланс счета
 ```json
 {
