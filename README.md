@@ -56,10 +56,9 @@ HSEPaymentSystem — это учебный проект, реализующий 
 
 ### POST `/accounts`
 Создать новый аккаунт (один на пользователя).
-
+http://localhost:8080/accounts
 **Request:**
 ```json
-http://localhost:8080/accounts
 {
   "user_id": "530fa038-f488-4a41-9ab7-7269f80af79d"
 }
