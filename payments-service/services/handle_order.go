@@ -60,7 +60,8 @@ func (w *Worker) handleOrder(event models.OrderEvent) error {
 	if balance < event.Amount {
 		log.Println("insufficient balance")
 		// outbox: payment_failed
-		return insertOutbox(tx, "PaymentFailed", event)
+		insertOutbox(tx, "PaymentFailed", event)
+		return tx.Commit()
 	}
 
 	_, err = tx.Exec("UPDATE accounts SET balance = balance - $1 WHERE user_id = $2", event.Amount, event.UserID)

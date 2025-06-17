@@ -3,6 +3,7 @@ package handlers
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 
 	"github.com/segmentio/kafka-go"
@@ -11,7 +12,7 @@ import (
 func (h *Handler) StartPaymentStatusConsumer(ctx context.Context) {
 	r := kafka.NewReader(kafka.ReaderConfig{
 		Brokers:  []string{"localhost:9092"},
-		Topic:    "payments-status",
+		Topic:    "payment-status",
 		GroupID:  "order-service-group",
 		MinBytes: 10e3,
 		MaxBytes: 10e6,
@@ -21,6 +22,7 @@ func (h *Handler) StartPaymentStatusConsumer(ctx context.Context) {
 		defer r.Close()
 		for {
 			m, err := r.ReadMessage(ctx)
+			fmt.Printf("fint topic message!!!")
 			if err != nil {
 				if err == context.Canceled {
 					return
@@ -44,8 +46,8 @@ func (h *Handler) StartPaymentStatusConsumer(ctx context.Context) {
 }
 
 type PaymentStatusEvent struct {
-	OrderID string `json:"order_id"`
-	Status  string `json:"status"` // например "paid", "failed"
+	OrderID string `json:"ID"`     // важно: с заглавной!
+	Status  string `json:"Status"` // то же
 }
 
 func (h *Handler) updateOrderStatus(orderID string, status string) error {

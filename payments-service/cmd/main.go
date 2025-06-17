@@ -17,7 +17,7 @@ func main() {
 
 	writer := &kafka.Writer{
 		Addr:     kafka.TCP("localhost:9092"),
-		Topic:    "orders",
+		Topic:    "payment-status",
 		Balancer: &kafka.LeastBytes{},
 	}
 	publisher := &worker.OutboxPublisher{
@@ -25,7 +25,6 @@ func main() {
 		Writer: writer,
 	}
 
-	go publisher.Start()
 	go publisher.Start()
 
 	go worker.NewWorker(db.DB).Start()
