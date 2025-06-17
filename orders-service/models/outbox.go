@@ -1,4 +1,3 @@
-// models/outbox.go
 package models
 
 import "time"

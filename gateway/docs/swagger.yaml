@@ -1,0 +1,41 @@
+basePath: /api
+host: localhost:3000
+info:
+  contact: {}
+  description: Gateway между Orders и Payments микросервисами
+  title: Gateway API
+  version: "1.0"
+paths:
+  /summary:
+    get:
+      description: Возвращает баланс пользователя и его заказы
+      parameters:
+      - description: User ID
+        in: query
+        name: user_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Получить сводную информацию (баланс и заказы)
+      tags:
+      - Summary
+swagger: "2.0"

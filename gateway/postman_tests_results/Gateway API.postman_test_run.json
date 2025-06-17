@@ -1,0 +1,176 @@
+{
+	"id": "f60150a5-2718-47c0-b33e-b20f6f1e3244",
+	"name": "Gateway API",
+	"timestamp": "2025-06-17T22:27:35.857Z",
+	"collection_id": "44067443-34506887-5d08-4859-ac92-4f815b08dc4a",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-06-17T22:27:35.036Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "002c2080-53b9-4ed7-96fc-bab0a511f695",
+			"name": "Create Account",
+			"url": "http://localhost:3000/api/accounts",
+			"time": 73,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				73
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "c7bc46f4-9158-440d-8f3b-364c8d356c57",
+			"name": "Deposit to Account",
+			"url": "http://localhost:3000/api/accounts/530fa038-f488-4a41-9ab7-7268f80af79d/deposit",
+			"time": 2,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				2
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "6c12ee59-d010-4c22-859b-e09686d5f797",
+			"name": "Get Balance",
+			"url": "http://localhost:3000/api/accounts/balance?user_id=530fa038-f488-4a41-9ab7-7268f80af79d",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				4
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "adbc6a9c-40c2-4dbb-994f-814c1f9d1981",
+			"name": "Create Order",
+			"url": "http://localhost:3000/api/orders",
+			"time": 24,
+			"responseCode": {
+				"code": 202,
+				"name": "Accepted"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				24
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "2785f11e-3272-4f07-a81f-5d504f4d3ece",
+			"name": "Get Order by ID",
+			"url": "http://localhost:3000/api/order/ae39eca2-f9a2-4589-8c0b-6b8ccb919c80",
+			"time": 2,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				2
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "030cf649-d009-4e47-a69a-acd17b03c708",
+			"name": "List Orders",
+			"url": "http://localhost:3000/api/orders",
+			"time": 2,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				2
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ff80d1f0-e589-417d-b96e-5c06b25dfebb",
+			"name": "Get User Summary",
+			"url": "http://localhost:3000/api/summary?user_id=530fa038-f488-4a41-9ab7-7268f80af79d",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				4
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 111,
+	"collection": {
+		"requests": [
+			{
+				"id": "002c2080-53b9-4ed7-96fc-bab0a511f695",
+				"method": "POST"
+			},
+			{
+				"id": "c7bc46f4-9158-440d-8f3b-364c8d356c57",
+				"method": "POST"
+			},
+			{
+				"id": "6c12ee59-d010-4c22-859b-e09686d5f797",
+				"method": "GET"
+			},
+			{
+				"id": "adbc6a9c-40c2-4dbb-994f-814c1f9d1981",
+				"method": "POST"
+			},
+			{
+				"id": "2785f11e-3272-4f07-a81f-5d504f4d3ece",
+				"method": "GET"
+			},
+			{
+				"id": "030cf649-d009-4e47-a69a-acd17b03c708",
+				"method": "GET"
+			},
+			{
+				"id": "ff80d1f0-e589-417d-b96e-5c06b25dfebb",
+				"method": "GET"
+			}
+		]
+	}
+}

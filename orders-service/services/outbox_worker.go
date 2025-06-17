@@ -1,4 +1,3 @@
-// services/outbox_worker.go
 package services
 
 import (
@@ -44,14 +43,14 @@ func (w *OutboxWorker) processOutbox(ctx context.Context) {
 			Value: msg.Payload,
 		})
 		if err != nil {
-			continue // логируй ошибку
+			continue
 		}
 
 		_, err = w.DB.ExecContext(ctx, `
             UPDATE outbox SET sent = true WHERE id = $1
         `, msg.ID)
 		if err != nil {
-			continue // логируй ошибку
+			continue
 		}
 	}
 }

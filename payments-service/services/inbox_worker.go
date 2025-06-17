@@ -41,7 +41,6 @@ func (w *Worker) Start() {
 		log.Printf("[worker] Received message: topic=%s partition=%d offset=%d key=%s value=%s",
 			m.Topic, m.Partition, m.Offset, string(m.Key), string(m.Value))
 
-		// обработка сообщения
 		var event models.OrderEvent
 		err = json.Unmarshal(m.Value, &event)
 		if err != nil {
@@ -55,5 +54,3 @@ func (w *Worker) Start() {
 		}
 	}
 }
-
-// kcat -b localhost:9092 -t orders -o beginning

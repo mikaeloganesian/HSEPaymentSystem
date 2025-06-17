@@ -1,3 +1,16 @@
+# HSEPaymentSystem
+
+## Введение
+HSEPaymentSystem — это учебный проект, реализующий микросервисную архитектуру для управления платежами и заказами пользователей. Система состоит из двух сервисов — Payments Service и Orders Service, которые взаимодействуют между собой через брокер сообщений Kafka и используют паттерн Transactional Outbox для надёжной доставки событий. Проект демонстрирует современные подходы к построению отказоустойчивых и масштабируемых backend-систем на языке Go с использованием PostgreSQL и REST API.
+
+---
+
+## Полезные ссылки
+- [Cсылка на Postman-коллекцию](https://mikaeloganesian.postman.co/workspace/Mikael-Oganesian's-Workspace~b70df3ff-c2f3-465d-8fb5-aab76b425428/collection/44067443-34506887-5d08-4859-ac92-4f815b08dc4a?action=share&creator=44067443)
+- Автор: [Mikael Oganesan](mailto:maoganesian@edu.hse.ru)
+- Вопросы и предложения: issues/pull requests приветствуются!
+
+
 # Payments Service
 
 Микросервис на Go для управления пользовательскими счетами — создание, пополнение и просмотр баланса. Использует PostgreSQL и паттерн **Transactional Outbox** для надёжной доставки событий.
@@ -233,9 +246,3 @@ http://localhost:8081/orders
     }
 ]
 ```
-
----
-## Контакты
-
-- Автор: [Mikael Oganesan](mailto:mikaeloganesan@example.com)
-- Вопросы и предложения: issues/pull requests приветствуются!

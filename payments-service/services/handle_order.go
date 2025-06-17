@@ -20,7 +20,6 @@ func (w *Worker) handleOrder(event models.OrderEvent) error {
 	}
 	defer tx.Rollback()
 
-	// Проверяем: уже обрабатывали это сообщение?
 	var exists bool
 	err = tx.Get(&exists, "SELECT EXISTS(SELECT 1 FROM inbox WHERE id = $1)", event.ID)
 	if err != nil {
@@ -30,8 +29,6 @@ func (w *Worker) handleOrder(event models.OrderEvent) error {
 		log.Println("event already processed:", event.ID)
 		return nil
 	}
-
-	// Добавляем в inbox
 
 	payload, err := json.Marshal(event)
 	if err != nil {
@@ -46,7 +43,6 @@ func (w *Worker) handleOrder(event models.OrderEvent) error {
 		return err
 	}
 
-	// Пробуем списать деньги
 	var balance int64
 	err = tx.Get(&balance, "SELECT balance FROM accounts WHERE user_id = $1", event.UserID)
 	if err != nil {
@@ -59,7 +55,6 @@ func (w *Worker) handleOrder(event models.OrderEvent) error {
 
 	if balance < event.Amount {
 		log.Println("insufficient balance")
-		// outbox: payment_failed
 		insertOutbox(tx, "PaymentFailed", event)
 		return tx.Commit()
 	}
@@ -69,7 +64,6 @@ func (w *Worker) handleOrder(event models.OrderEvent) error {
 		return err
 	}
 
-	// outbox: payment_success
 	err = insertOutbox(tx, "PaymentSuccess", event)
 	if err != nil {
 		return err

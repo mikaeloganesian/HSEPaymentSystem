@@ -25,7 +25,6 @@ func (h *Handler) CreateAccount(c *gin.Context) {
 		return
 	}
 
-	// check if account already exists
 	var count int
 	err := h.DB.Get(&count, "SELECT COUNT(*) FROM accounts WHERE user_id = $1", input.UserID)
 	if err != nil {
@@ -43,7 +42,7 @@ func (h *Handler) CreateAccount(c *gin.Context) {
     `, uuid.New(), input.UserID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create account"})
-		c.Error(err) // Запишет ошибку в контекст Gin для логов, если настроено
+		c.Error(err)
 		return
 	}
 

@@ -15,10 +15,9 @@ type OutboxPublisher struct {
 	Writer *kafka.Writer
 }
 
-// PaymentStatusEvent описывает структуру сообщения для Kafka
 type PaymentStatusEvent struct {
 	OrderID string `json:"id"`
-	Status  string `json:"status"` // "success" или "failed"
+	Status  string `json:"status"`
 }
 
 func (p *OutboxPublisher) Start() {

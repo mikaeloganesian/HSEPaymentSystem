@@ -46,8 +46,8 @@ func (h *Handler) StartPaymentStatusConsumer(ctx context.Context) {
 }
 
 type PaymentStatusEvent struct {
-	OrderID string `json:"ID"`     // важно: с заглавной!
-	Status  string `json:"Status"` // то же
+	OrderID string `json:"ID"`
+	Status  string `json:"Status"`
 }
 
 func (h *Handler) updateOrderStatus(orderID string, status string) error {
