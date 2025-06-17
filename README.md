@@ -5,6 +5,9 @@ HSEPaymentSystem — это учебный проект, реализующий 
 
 ---
 
+## Важно (для ассистента)
+Если честно, последние четыре часа я пытался закачать весь проект в докер, но в 3 ночи у меня уже нервы не выдерживают, поэтому я просто откатил все до момента, когда у меня все работало на локалке. `:(`
+
 ## Полезные ссылки
 - [Cсылка на Postman-коллекцию](https://mikaeloganesian.postman.co/workspace/Mikael-Oganesian's-Workspace~b70df3ff-c2f3-465d-8fb5-aab76b425428/collection/44067443-34506887-5d08-4859-ac92-4f815b08dc4a?action=share&creator=44067443)
 - Автор: [Mikael Oganesan](mailto:maoganesian@edu.hse.ru)
