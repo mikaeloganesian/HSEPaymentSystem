@@ -8,6 +8,16 @@ import (
 	"github.com/google/uuid"
 )
 
+// GetBalamce godoc
+// @Summary Создать счет
+// @Description Создает новый счет
+// @Tags accounts
+// @Accept json
+// @Produce json
+// @Success 202 {object} map[string]string "Order accepted"
+// @Failure 400 {object} map[string]string "Bad request"
+// @Failure 500 {object} map[string]string "Internal server error"
+// @Router /accounts [post]
 func (h *Handler) CreateAccount(c *gin.Context) {
 	var input models.CreateAccountInput
 	if err := c.ShouldBindJSON(&input); err != nil {

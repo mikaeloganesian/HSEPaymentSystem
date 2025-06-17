@@ -7,6 +7,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// RefillBalance godoc
+// @Summary Пополнить баланс
+// @Description Пополняет баланс счета
+// @Tags accounts
+// @Accept json
+// @Produce json
+// @Success 202 {object} map[string]string "Order accepted"
+// @Failure 400 {object} map[string]string "Bad request"
+// @Failure 500 {object} map[string]string "Internal server error"
+// @Router /accounts/{id}/deposit [post]
 func (h *Handler) RefillBalance(c *gin.Context) {
 	var input models.RefillInput
 	if err := c.ShouldBindJSON(&input); err != nil {

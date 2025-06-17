@@ -1,0 +1,116 @@
+basePath: /
+definitions:
+  models.Account:
+    properties:
+      balance:
+        description: в копейках
+        type: integer
+      created_at:
+        type: string
+      id:
+        type: integer
+      user_id:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API для управления счетами
+  title: Payment Service API
+  version: "1.0"
+paths:
+  /account/{id}/balance:
+    get:
+      consumes:
+      - application/json
+      description: Создает новый заказ и ставит в очередь
+      parameters:
+      - description: Данные заказа
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/models.Account'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Order accepted
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Создать заказ
+      tags:
+      - accounts
+  /accounts:
+    post:
+      consumes:
+      - application/json
+      description: Создает новый счет
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Order accepted
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Создать счет
+      tags:
+      - accounts
+  /accounts/{id}/deposit:
+    post:
+      consumes:
+      - application/json
+      description: Пополняет баланс счета
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Order accepted
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Пополнить баланс
+      tags:
+      - accounts
+swagger: "2.0"
