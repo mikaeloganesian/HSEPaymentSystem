@@ -12,6 +12,8 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - hw3-net
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
@@ -21,6 +23,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "2181:2181"
+    networks:
+      - hw3-net
 
   kafka:
     image: confluentinc/cp-kafka:7.5.0
@@ -34,6 +38,8 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - hw3-net
 
   kafka-init:
     image: confluentinc/cp-kafka:7.5.0
@@ -48,6 +54,8 @@ services:
         kafka-topics --create --topic orders --bootstrap-server kafka:9092 || true
         kafka-topics --create --topic payment-status --bootstrap-server kafka:9092 || true
         tail -f /dev/null
+    networks:
+      - hw3-net
 
   payments-service:
     build:
@@ -58,14 +66,12 @@ services:
       - postgres
       - kafka
     environment:
-      DB_HOST: host.docker.internal
-      DB_PORT: "5432"
-      DB_NAME: payments
-      DB_USER: mikaeloganesan
-      DB_PASSWORD: password
-
+      - DATABASE_URL=postgres://mikaeloganesan:password@postgres:5432/payments?sslmode=disable
+      - KAFKA_BROKER=kafka:9092
     ports:
       - "8080:8080"
+    networks:
+      - hw3-net
 
   orders-service:
     build:
@@ -76,13 +82,12 @@ services:
       - postgres
       - kafka
     environment:
-      DB_HOST: host.docker.internal
-      DB_PORT: "5432"
-      DB_NAME: payments
-      DB_USER: mikaeloganesan
-      DB_PASSWORD: password
+      - DATABASE_URL=postgres://mikaeloganesan:password@postgres:5432/payments?sslmode=disable
+      - KAFKA_BROKER=kafka:9092
     ports:
       - "8081:8081"
+    networks:
+      - hw3-net
 
   gateway:
     build:
@@ -95,8 +100,14 @@ services:
     ports:
       - "3000:3000"
     environment:
-      PAYMENTS_SERVICE_URL: http://payments-service:8080
-      ORDERS_SERVICE_URL: http://orders-service:8081
+      - PAYMENTS_SERVICE_URL=http://payments-service:8080
+      - ORDERS_SERVICE_URL=http://orders-service:8081
+    networks:
+      - hw3-net
 
 volumes:
   pgdata:
+
+networks:
+  hw3-net:
+    driver: bridge
